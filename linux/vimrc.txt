@@ -1,0 +1,127 @@
+"====== Basic Configuration ======
+set cursorline            " 突出显示当前行
+syntax on                 " 语法高亮
+set mouse=a               " 设置鼠标
+set encoding=utf-8        " 设置编码为 UTF-8
+set tabstop=4             " 设置制表符宽度为4个空格
+set shiftwidth=4          " 设置缩进宽度为4个空格
+set softtabstop=4         " 按退格键时删掉4个空格
+set expandtab             " 将制表符自动转换为空格
+set number                " 显示行号
+set ruler                 " 显示标尺
+set autoindent            " 自动缩进
+set smartindent           " 智能缩进
+set showmatch             " 显示匹配的括号
+set wrap                  " 开启自动换行
+set foldmethod=indent     " 使用缩进来折叠代码
+set foldlevel=99          " 默认打开所有折叠
+set ignorecase            " 搜索时忽略大小写
+set hlsearch              " 搜索时自动高亮匹配项
+
+"====== Key Mapping Configuration ======
+nnoremap <C-s> :w<CR>     " 设置 Ctrl+s 保存文件
+inoremap <C-s> <C-o>:w<CR>
+vnoremap <C-s> <C-c>:w<CR>
+
+let mapleader = " "       " 设置 leader 键为空格
+
+nnoremap <leader>wq :wq<CR>
+nnoremap <leader>qqq :q!<CR>
+
+"====== vim-Plug Configuration ======
+set nocompatible          " 启用增强功能
+filetype off              " 必须的初始化设置
+
+"====== Plugin Section (所有插件相关设置) ======
+call plug#begin()
+
+" 文件浏览器插件
+Plug 'preservim/nerdtree'
+
+" 注释插件
+Plug 'preservim/nerdcommenter'
+
+" 彩虹括号插件
+Plug 'luochen1990/rainbow'
+
+" 全文搜索插件
+Plug 'dyng/ctrlsf.vim'
+
+" 自动补全括号插件
+Plug 'jiangmiao/auto-pairs'
+
+" 状态栏插件
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" LSP 支持插件
+Plug 'prabirshrestha/vim-lsp'
+
+call plug#end()
+filetype plugin indent on   " 开启文件类型检测、插件及缩进
+
+"====== LSP Plugin Configuration ======
+" 注册 LSP 服务器 (Python 示例)
+if executable('pylsp')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pylsp',
+        \ 'cmd': {server_info->['pylsp']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> K <plug>(lsp-hover)
+    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+endfunction
+
+augroup lsp_install
+    au!
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+
+"====== NERDTree Plugin Configuration ======
+map <leader>e :NERDTreeToggle<CR>       " 快速打开/关闭 NERDTree
+map <leader>E :NERDTreeFocus<CR>        " 聚焦 NERDTree
+" 如果退出 Vim 后只剩下 NERDTree 的窗口，则自动退出
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+"====== vim-airline Plugin Configuration ======
+let g:airline#extensions#tabline#enabled = 1  " 启用 airline 的标签扩展
+
+"====== rainbow Plugin Configuration ======
+let g:rainbow_active = 1              " 启用 rainbow
+
+let g:rainbow_conf = {
+\   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+\   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+\   'operators': '_,_',
+\   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\   'separately': {
+\       '*': {},
+\       'tex': {
+\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+\       },
+\       'lisp': {
+\           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+\       },
+\       'vim': {
+\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+\       },
+\       'html': {
+\           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+\       },
+\       'css': 0,
+\   }
+\}
+
+"====== End of Configuration ======
+
