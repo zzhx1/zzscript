@@ -1,4 +1,5 @@
 "====== Basic Configuration ======
+set nocompatible
 set cursorline            " 突出显示当前行
 syntax on                 " 语法高亮
 set encoding=utf-8        " 设置编码为 UTF-8
@@ -14,13 +15,21 @@ set showmatch             " 显示匹配的括号
 set wrap                  " 开启自动换行
 set foldmethod=indent     " 使用缩进来折叠代码
 set foldlevel=99          " 默认打开所有折叠
+
 set ignorecase            " 搜索时忽略大小写
-set hlsearch              " 搜索时自动高亮匹配项
+set smartcase             " 当搜索词包含大写字母时，自动开启大小写敏感
+set incsearch             " 实时预览搜索结果（输入时立即高亮匹配）
+set hlsearch              " 高亮搜索结果
 
 "====== Key Mapping Configuration ======
 nnoremap <C-s> :w<CR>     " 设置 Ctrl+s 保存文件
 inoremap <C-s> <C-o>:w<CR>
 vnoremap <C-s> <C-c>:w<CR>
+
+nnoremap <C-h> <C-w>h                 " Ctrl + 方向键切换窗口（更直观）
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 let mapleader = " "       " 设置 leader 键为空格
 
@@ -28,7 +37,6 @@ nnoremap <leader>wq :wq<CR>
 nnoremap <leader>qqq :q!<CR>
 
 "====== vim-Plug Configuration ======
-set nocompatible          " 启用增强功能
 filetype off              " 必须的初始化设置
 
 "====== Plugin Section (所有插件相关设置) ======
@@ -95,6 +103,10 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 
 "====== vim-airline Plugin Configuration ======
 let g:airline#extensions#tabline#enabled = 1  " 启用 airline 的标签扩展
+" let g:airline_theme='molokai'  " 指定主题（需提前安装对应主题插件）
+" let g:airline_powerline_fonts=1 " 启用 powerline 字体（需安装 powerline 字体）
+let g:airline#extensions#branch#enabled=1 " 显示 git 分支
+let g:airline#extensions#hunks#enabled=1  " 显示 git 代码改动
 
 "====== rainbow Plugin Configuration ======
 let g:rainbow_active = 1              " 启用 rainbow
