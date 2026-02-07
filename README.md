@@ -93,6 +93,16 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/
 sh -c "$(wget -O- https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_tmux.sh)"
 ```
 
+#### 安装 Oh My Zsh
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_ohmyzsh.sh)"
+```
+
+或者使用 wget：
+```bash
+sh -c "$(wget -O- https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_ohmyzsh.sh)"
+```
+
 ### 本地安装
 
 如果已经克隆了仓库，也可以本地执行：
@@ -115,10 +125,16 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/sc
    bash set_tmux.sh
    ```
 
-4. **配置其他工具：**
+4. **安装 Oh My Zsh：**
    ```bash
    cd linux/scripts/setup
-   bash set_ohmyzsh.sh  # 或其他配置脚本
+   bash set_ohmyzsh.sh
+   ```
+
+5. **配置其他工具：**
+   ```bash
+   cd linux/scripts/setup
+   bash set_zshrc.sh  # 或其他配置脚本
    ```
 
 ## 注意事项
