@@ -75,32 +75,32 @@ Linux 系统配置和安装脚本集合。
 
 #### 配置 Vim
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_vim.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_vim.sh)"
 ```
 
 或者使用 wget：
 ```bash
-sh -c "$(wget -O- https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_vim.sh)"
+bash -c "$(wget -O- https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_vim.sh)"
 ```
 
 #### 配置 Tmux
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_tmux.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_tmux.sh)"
 ```
 
 或者使用 wget：
 ```bash
-sh -c "$(wget -O- https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_tmux.sh)"
+bash -c "$(wget -O- https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_tmux.sh)"
 ```
 
 #### 安装 Oh My Zsh
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_ohmyzsh.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_ohmyzsh.sh)"
 ```
 
 或者使用 wget：
 ```bash
-sh -c "$(wget -O- https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_ohmyzsh.sh)"
+bash -c "$(wget -O- https://raw.githubusercontent.com/zzhx1/zzscript/main/linux/scripts/setup/set_ohmyzsh.sh)"
 ```
 
 ### 本地安装
