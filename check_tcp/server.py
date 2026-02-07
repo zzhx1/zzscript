@@ -26,4 +26,3 @@ def tcp_server():
 
 if __name__ == "__main__":
     tcp_server()
-
